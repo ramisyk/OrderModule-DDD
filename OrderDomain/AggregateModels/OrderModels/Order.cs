@@ -1,4 +1,5 @@
-﻿using Order.Domain.SeedWork;
+﻿using Order.Domain.Events;
+using Order.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace Order.Domain.AggregateModels.OrderModels
             OrderStatus = orderStatus;
             Address = address;
             OrderItems = orderItems;
+
+            AddDomainEvents(new OrderStartedDomainEvent("", "", this));
         }
 
         public void AddOrderItem(int quantity, decimal price, int productId)
